@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           storcli2
-Version:        008.0009.0000.0010
+Version:        008.0010.0000.0010
 Release:        1%{?dist}
 Summary:        Broadcom MegaRAID StorCLI2
 License:        Proprietary
@@ -10,7 +10,7 @@ ExclusiveArch:  aarch64 x86_64
 
 # Search at: https://www.broadcom.com/support/download-search?pg=&pf=&pn=&pa=&po=&dk=storcli&pl=
 # Note that final URLs, tarball name and tarball structure keep on changing.
-Source0:        StorCLI_Avenger_8_9-008.0009.0000.0010.zip
+Source0:        StorCLI_Avenger_8.10-008.0010.0000.0010.zip
 
 %if 0%{?rhel} >= 8 || 0%{?fedora}
 BuildRequires:  efi-srpm-macros
@@ -47,7 +47,7 @@ UEFI environment.
 
 %prep
 %autosetup -c
-mv storcli_rel/Avenger_StorCLI .
+mv StorCLI_Avenger_8.10-008.0010.0000.0010/Avenger_StorCLI .
 unzip -q Avenger_StorCLI/JSON_Schema/JSON-SCHEMA-FILES.zip
 
 %ifarch x86_64
@@ -77,6 +77,9 @@ install -p -m 0644 -D %{name}.efi %{buildroot}%{efi_esp_efi}/%{name}.efi
 %{efi_esp_efi}/%{name}.efi
 
 %changelog
+* Sun Sep 29 2024 Simone Caronni <negativo17@gmail.com> - 008.0010.0000.0010-1
+- Update to 008.0010.0000.0010.
+
 * Thu Jun 20 2024 Simone Caronni <negativo17@gmail.com> - 008.0009.0000.0010-1
 - Update to 008.0009.0000.0010 (Apr 02, 2024).
 
