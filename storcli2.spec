@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           storcli2
-Version:        008.0010.0000.0010
-Release:        2%{?dist}
+Version:        008.0014.0000.0012
+Release:        1%{?dist}
 Summary:        Broadcom MegaRAID StorCLI2
 License:        Proprietary
 URL:            https://www.broadcom.com/products/storage/raid-controllers
@@ -10,7 +10,7 @@ ExclusiveArch:  aarch64 x86_64
 
 # Search at: https://www.broadcom.com/support/download-search?pg=&pf=&pn=&pa=&po=&dk=storcli&pl=
 # Note that final URLs, tarball name and tarball structure keep on changing.
-Source0:        storcli_rel_008.0012.0000.0004.zip
+Source0:        008.0014.0000.0012_MR8.14_Storcli2.zip
 
 %if 0%{?rhel} >= 8 || 0%{?fedora}
 BuildRequires:  efi-srpm-macros
@@ -48,7 +48,7 @@ UEFI environment.
 %prep
 %autosetup -c
 mv storcli_rel/Avenger_StorCLI/ .
-unzip -q Avenger_StorCLI/JSON_Schema/JSON-SCHEMA-FILES.zip
+unzip -q Avenger_StorCLI/JSON_Schema/JSON_SCHEMA_FILES.zip
 
 %ifarch x86_64
 rpm2cpio Avenger_StorCLI/Linux/*rpm | cpio -idm
@@ -70,13 +70,16 @@ install -p -m 0644 -D %{name}.efi %{buildroot}%{efi_esp_efi}/%{name}.efi
 
 %files
 %license Avenger_StorCLI/ThirdPartyLicenseNotice.pdf
-%doc Avenger_StorCLI/readme.txt Avenger_StorCLI/storcli2conf.ini Avenger_StorCLI/JSON_Schema/JSON-SCHEMA-FILES.zip
+%doc Avenger_StorCLI/readme.txt Avenger_StorCLI/storcli2conf.ini Avenger_StorCLI/JSON_Schema/JSON_SCHEMA_FILES.zip
 %{_sbindir}/%{name}
 
 %files efi
 %{efi_esp_efi}/%{name}.efi
 
 %changelog
+* Tue Oct 14 2025 Simone Caronni <negativo17@gmail.com> - 008.0014.0000.0012-1
+- Update to 008.0014.0000.0012 (MR 8.14).
+
 * Mon Apr 14 2025 Simone Caronni <negativo17@gmail.com> - 008.0010.0000.0010-2
 - Update to version 008.0012.0000.0004.
 
